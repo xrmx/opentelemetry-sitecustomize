@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opentelemetry-sitecustomize"
+dynamic = ["version"]
+description = "OpenTelemetry OCI sitecustomize"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    { name = "Lukas Hering", email = "lukasheringb@gmail.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "sitecustomize-entrypoints ~= 1.0",
+    "opentelemetry-api>=1.25",
+    "opentelemetry-instrumentation>=0.46b0",
+]
+
+[tool.hatch.version]
+path = "src/opentelemetry/instrumentation/sitecustomize/version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/opentelemetry"]
+
+[project.entry-points.sitecustomize]
+opentelemetry-sitecustomize = "opentelemetry.instrumentation.auto_instrumentation:initialize"
