@@ -5,11 +5,25 @@ build-backend = "hatchling.build"
 [project]
 name = "opentelemetry-sitecustomize"
 dynamic = ["version"]
-description = "OpenTelemetry OCI sitecustomize"
+description = "OpenTelemetry auto-instrumentation for Python applications using sitecustomize"
 readme = "README.md"
 license = "Apache-2.0"
 authors = [
     { name = "Lukas Hering", email = "lukasheringb@gmail.com" }
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: OpenTelemetry",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
 ]
 requires-python = ">=3.9"
 dependencies = [

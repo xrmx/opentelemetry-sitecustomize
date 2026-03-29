@@ -1,21 +1,23 @@
-# opentelemetry-sitecustomize
+# OpenTelemetry SiteCustomize Instrumentation
 
-Automatic OpenTelemetry instrumentation via Python's `sitecustomize` mechanism. This package removes the need to wrap your application with the `opentelemetry-instrument` CLI, just install it and run your Python application normally.
+Automatic OpenTelemetry instrumentation via Python's `sitecustomize` mechanism. Designed for environments where modifying the application startup command is difficult or impossible: managed runtimes, serverless platforms, job schedulers, and similar constrained settings. Install the package and instrumentation is applied automatically at Python startup, no wrapper command required.
 
-## Why Use This Instead of the CLI?
+## When to Use This
 
-The `opentelemetry-instrument` CLI requires wrapping your application command, which can be inconvenient/cumbersome in certain scenarios. Here are a few reasons you may opt to use this package instead of the CLI:
+The `opentelemetry-instrument` CLI is the standard way to auto-instrument a Python application. This package is for situations where wrapping your command with the CLI is not feasible, or requires tedious workarounds.
 
-- **No wrapper script needed** — no need to prefix every command with `opentelemetry-instrument`
-- **Works with any execution method** — `python app.py`, `gunicorn`, `celery worker`, IDE debuggers, and test runners all get instrumented without special configuration
-- **Simpler containerization** — no need to change `CMD`/`ENTRYPOINT` in Dockerfiles; just add the package to your requirements
-
-> **Note:** The `opentelemetry-instrument` CLI should still be the preferred method of instrumentation when possible. Use this package in situations where wrapping your command with the CLI is not practical.
+> **Note:** If you control your application's startup command, prefer the `opentelemetry-instrument` CLI. This package is specifically designed for cases where that is not practical.
 
 ## Installation
 
 ```bash
 pip install opentelemetry-sitecustomize
+```
+
+or
+
+```bash
+uv add opentelemetry-sitecustomize
 ```
 
 You will also need to install the OpenTelemetry instrumentors for the libraries you use. For example:
@@ -39,6 +41,19 @@ opentelemetry-instrument python app.py
 ```
 
 OpenTelemetry instrumentation is applied automatically at Python startup.
+
+## Configuration
+
+This package uses the same initialization path as the `opentelemetry-instrument` CLI, so all standard OpenTelemetry environment variables apply:
+
+- `OTEL_SERVICE_NAME` - set the service name for your traces
+- `OTEL_TRACES_EXPORTER` - choose the trace exporter (e.g., `otlp`, `console`, `none`)
+- `OTEL_METRICS_EXPORTER` - choose the metrics exporter
+- `OTEL_LOGS_EXPORTER` - choose the logs exporter
+- `OTEL_EXPORTER_OTLP_ENDPOINT` - set the OTLP collector endpoint
+- `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` - comma-separated list of instrumentations to skip
+
+See the [OpenTelemetry Python documentation](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html) for the full list of supported environment variables.
 
 ## How It Works
 
