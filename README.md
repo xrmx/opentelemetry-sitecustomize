@@ -1,5 +1,10 @@
 # OpenTelemetry SiteCustomize Instrumentation
 
+[![PyPI](https://img.shields.io/pypi/v/opentelemetry-sitecustomize)](https://pypi.org/project/opentelemetry-sitecustomize/)
+[![Python Version](https://img.shields.io/pypi/pyversions/opentelemetry-sitecustomize)](https://pypi.org/project/opentelemetry-sitecustomize/)
+[![License](https://img.shields.io/pypi/l/opentelemetry-sitecustomize)](https://github.com/herin049/opentelemetry-sitecustomize/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/stars/herin049/opentelemetry-sitecustomize)](https://github.com/herin049/opentelemetry-sitecustomize)
+
 Automatic OpenTelemetry instrumentation via Python's `sitecustomize` mechanism. Designed for environments where modifying the application startup command is difficult or impossible: managed runtimes, serverless platforms, job schedulers, and similar constrained settings. Install the package and instrumentation is applied automatically at Python startup, no wrapper command required.
 
 ## When to Use This
