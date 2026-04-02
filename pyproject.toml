@@ -32,6 +32,9 @@ dependencies = [
     "opentelemetry-instrumentation>=0.46b0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/herin049/opentelemetry-sitecustomize"
+
 [tool.hatch.version]
 path = "src/opentelemetry/instrumentation/sitecustomize/version.py"
 
